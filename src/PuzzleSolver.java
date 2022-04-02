@@ -95,12 +95,12 @@ public class PuzzleSolver {
 
     public static Pair<Board, Integer> solve(Board b){
         ArrayList<Pair<Board,String>> boardList = new ArrayList<Pair<Board,String>>();
-        Board currBoard = new Board(b);
+        Board solutionSoFar = new Board(b);
         boolean end = false;
-        Pair<Board, String> currPair = new Pair<Board, String>(currBoard, "");
+        Pair<Board, String> currPair = new Pair<Board, String>(solutionSoFar, "");
         int nodeCount = 1;
 
-        while (!end && currPair.getKey().isSolvable()) {
+        while (!end) {
             ArrayList<Pair<Board,String>> localBoardList = new ArrayList<Pair<Board,String>>();
             Pair<Board, String> upPair;
             Pair<Board, String> rightPair;
@@ -181,6 +181,7 @@ public class PuzzleSolver {
 
             localBoardList.clear();
             if (isSolution(currPair.getKey())) {
+                solutionSoFar = currPair.getKey();
                 ArrayList<Pair<Board,String>> fooListCopy = new ArrayList<Pair<Board,String>>();
                 for (Pair<Board,String> pair : boardList) {
                     if (pair.getKey().getC() < currPair.getKey().getC()) {
@@ -198,7 +199,7 @@ public class PuzzleSolver {
                 }
             }
         }
-        return new Pair<Board,Integer>(currPair.getKey(), nodeCount);       
+        return new Pair<Board,Integer>(solutionSoFar, nodeCount);       
     }
 }
 

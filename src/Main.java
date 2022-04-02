@@ -36,7 +36,7 @@ public class Main  {
             if (kurangi < 10) {
                 System.out.println("    " + kurangi + "    |");
             } else {
-                System.out.println("   " + kurangi + "   |");
+                System.out.println("   " + kurangi + "    |");
             }
         }
         System.out.println("| tot |    "+kurang+"   |");
